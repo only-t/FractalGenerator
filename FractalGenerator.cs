@@ -9,13 +9,13 @@ namespace FractalGeneratorProject
     public partial class FractalGenerator : Form, IMessageFilter
     {
         private int currentDepth = 1;
-        private float currentScale = 1;
+        public float currentScale = 1;
         private Fractal currentFractal;
 
         private bool dragging = false;
         private float dragging_start_x, dragging_start_y;
-        private PointF _offset = new PointF(0, 0);
-        private PointF offset = new PointF(0, 0);
+        private (float, float) _offset = (0, 0);
+        public (float, float) offset = (0, 0);
 
         public FractalGenerator()
         {
@@ -59,11 +59,11 @@ namespace FractalGeneratorProject
                 PictureBox box = (PictureBox)sender;
                 int w = box.Width/2;
                 int h = box.Height/2;
-                currentFractal.ClearSegments();
-                currentFractal.DrawFractalWithDepth(g, new Point(w, h), currentScale, offset, currentDepth);
+                currentFractal.Clear();
+                currentFractal.DrawFractalWithDepth(g, new Point(w, h), currentDepth);
                 this.FractalName.Text = "Name: " + currentFractal.name;
                 this.FractalName.BorderSides = ToolStripStatusLabelBorderSides.Right;
-                this.FractalSegAmount.Text = "Edges: " + currentFractal.segments.Count;
+                this.FractalSegAmount.Text = "Edges: " + currentFractal.GetSegmentAmount();
             }
         }
 
@@ -73,17 +73,23 @@ namespace FractalGeneratorProject
 
             if (comboBox != null)
             {
-                if(comboBox.SelectedItem.ToString() == "Koch Snowflake")
+                this.TriangleFillButton.Visible = false;
+                this.TriangleFillButton.Enabled = false;
+                this.TriangleFillButton.Checked = false;
+
+                if (comboBox.SelectedItem.ToString() == "Koch Snowflake")
                 {
-                    currentFractal = new KochSnowflake();
+                    currentFractal = new KochSnowflake(this);
                 }
                 else if(comboBox.SelectedItem.ToString() == "Koch Anti-Snowflake")
                 {
-                    currentFractal = new KochAntiSnowflake();
+                    currentFractal = new KochAntiSnowflake(this);
                 }
                 else if(comboBox.SelectedItem.ToString() == "Sierpinski Triangle")
                 {
-                    //currentFractal = new SierpinskiTriangle();
+                    this.TriangleFillButton.Visible = true;
+                    this.TriangleFillButton.Enabled = true;
+                    currentFractal = new SierpinskiTriangle(this);
                 }
             }
 
@@ -137,17 +143,22 @@ namespace FractalGeneratorProject
         {
             if(dragging)
             {
-                offset.X = _offset.X + dragging_start_x - e.X;
-                offset.Y = _offset.Y + dragging_start_y - e.Y;
+                offset.Item1 = _offset.Item1 + dragging_start_x - e.X;
+                offset.Item2 = _offset.Item2 + dragging_start_y - e.Y;
             }
 
             this.FractalPictureBox.Refresh();
         }
 
+        private void TriangleFillButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.FractalPictureBox.Refresh();
+        }
+
         private void RestoreScaleButton_Click(object sender, EventArgs e)
         {
-            offset.X = 0;
-            offset.Y = 0;
+            offset.Item1 = 0;
+            offset.Item2 = 0;
             this.FractalPictureBox.Refresh();
         }
     }

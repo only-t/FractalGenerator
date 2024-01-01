@@ -7,8 +7,14 @@ namespace FractalGeneratorProject
     internal class KochAntiSnowflake : Fractal
     {
         private const int BASE_SEG_LEN = 200;
+        private List<Segment> segments;
+        private FractalGenerator mainform;
 
-        public KochAntiSnowflake() : base("Koch Anti-Snowflake") { }
+        public KochAntiSnowflake(FractalGenerator mainform) : base("Koch Anti-Snowflake")
+        {
+            segments = new List<Segment>();
+            this.mainform = mainform;
+        }
 
         private PointF RotatePointF(PointF p, PointF c, int angle)
         {
@@ -17,31 +23,31 @@ namespace FractalGeneratorProject
                 c.Y + (float)(Math.Sin(rad) * (p.X - c.X) + Math.Cos(rad) * (p.Y - c.Y)));
         }
 
-        private void Draw(Graphics g, PointF c, PointF offset, float scale)
+        private void Draw(Graphics g, PointF c)
         {
             foreach (Segment seg in segments)
             {
+                float scale = mainform.currentScale;
+                (float, float) offset = mainform.offset;
+
                 float x1 = seg.x1 - c.X;
                 float y1 = seg.y1 - c.Y;
                 float x2 = seg.x2 - c.X;
                 float y2 = seg.y2 - c.Y;
 
-                float offset_x = -offset.X;
-                float offset_y = -offset.Y;
-
                 g.DrawLine(Pens.Black,
-                    x1 * scale + c.X + offset_x,
-                    y1 * scale + c.Y + offset_y,
-                    x2 * scale + c.X + offset_x,
-                    y2 * scale + c.Y + offset_y);
+                    x1 * scale + c.X - offset.Item1,
+                    y1 * scale + c.Y - offset.Item2,
+                    x2 * scale + c.X - offset.Item1,
+                    y2 * scale + c.Y - offset.Item2);
             }
         }
 
-        public override void DrawFractalWithDepth(Graphics g, Point c, float scale, PointF offset, int depth)
+        public override void DrawFractalWithDepth(Graphics g, Point c, int depth)
         {
             if (depth <= 0)
             {
-                Draw(g, c, offset, scale);
+                Draw(g, c);
                 return;
             }
 
@@ -74,7 +80,17 @@ namespace FractalGeneratorProject
 
             segments = new_segments;
 
-            DrawFractalWithDepth(g, c, scale, offset, depth - 1);
+            DrawFractalWithDepth(g, c, depth - 1);
+        }
+
+        public override void Clear()
+        {
+            segments.Clear();
+        }
+
+        public override int GetSegmentAmount()
+        {
+            return segments.Count;
         }
     }
 }

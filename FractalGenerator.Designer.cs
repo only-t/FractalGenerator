@@ -41,6 +41,7 @@
             this.FractalChooseBox = new System.Windows.Forms.ComboBox();
             this.DepthSlider = new FractalGeneratorProject.FractalDepthTrackBar();
             this.ScaleLabel = new System.Windows.Forms.Label();
+            this.TriangleFillButton = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -140,7 +141,9 @@
             "400%",
             "600%",
             "800%",
-            "1000%"});
+            "1000%",
+            "1500%",
+            "2000%"});
             this.ZoomComboBox.Location = new System.Drawing.Point(376, 0);
             this.ZoomComboBox.Margin = new System.Windows.Forms.Padding(0);
             this.ZoomComboBox.Name = "ZoomComboBox";
@@ -189,6 +192,7 @@
             this.ControlsTable.Controls.Add(this.FractalChooseBox, 1, 0);
             this.ControlsTable.Controls.Add(this.DepthSlider, 1, 2);
             this.ControlsTable.Controls.Add(this.ScaleLabel, 1, 1);
+            this.ControlsTable.Controls.Add(this.TriangleFillButton, 1, 3);
             this.ControlsTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ControlsTable.Location = new System.Drawing.Point(0, 0);
             this.ControlsTable.Margin = new System.Windows.Forms.Padding(0);
@@ -242,6 +246,23 @@
             this.ScaleLabel.Text = "Iteration:";
             this.ScaleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TriangleFillButton
+            // 
+            this.TriangleFillButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TriangleFillButton.AutoSize = true;
+            this.TriangleFillButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TriangleFillButton.Location = new System.Drawing.Point(123, 116);
+            this.TriangleFillButton.Margin = new System.Windows.Forms.Padding(0);
+            this.TriangleFillButton.Name = "TriangleFillButton";
+            this.TriangleFillButton.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.TriangleFillButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.TriangleFillButton.Size = new System.Drawing.Size(43, 26);
+            this.TriangleFillButton.TabIndex = 3;
+            this.TriangleFillButton.Text = "Fill";
+            this.TriangleFillButton.UseVisualStyleBackColor = true;
+            this.TriangleFillButton.Visible = false;
+            this.TriangleFillButton.CheckedChanged += new System.EventHandler(this.TriangleFillButton_CheckedChanged);
+            // 
             // FractalGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +303,7 @@
         private System.Windows.Forms.TableLayoutPanel BottomStripTable;
         private System.Windows.Forms.ComboBox ZoomComboBox;
         private System.Windows.Forms.Button RestoreScaleButton;
+        public System.Windows.Forms.CheckBox TriangleFillButton;
     }
 }
 
