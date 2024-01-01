@@ -1,4 +1,4 @@
-﻿namespace FractalGenerator
+﻿namespace FractalGeneratorProject
 {
     partial class FractalGenerator
     {
@@ -30,15 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FractalGenerator));
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.BottomStripTable = new System.Windows.Forms.TableLayoutPanel();
+            this.FractalInfoStrip = new System.Windows.Forms.StatusStrip();
+            this.FractalName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.FractalSegAmount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ZoomComboBox = new System.Windows.Forms.ComboBox();
+            this.RestoreScaleButton = new System.Windows.Forms.Button();
             this.FractalPictureBox = new System.Windows.Forms.PictureBox();
             this.ControlsTable = new System.Windows.Forms.TableLayoutPanel();
             this.FractalChooseBox = new System.Windows.Forms.ComboBox();
-            this.DepthSlider = new System.Windows.Forms.TrackBar();
+            this.DepthSlider = new FractalGeneratorProject.FractalDepthTrackBar();
             this.ScaleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
             this.MainSplitContainer.SuspendLayout();
+            this.BottomStripTable.SuspendLayout();
+            this.FractalInfoStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FractalPictureBox)).BeginInit();
             this.ControlsTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepthSlider)).BeginInit();
@@ -55,6 +63,7 @@
             // 
             // MainSplitContainer.Panel1
             // 
+            this.MainSplitContainer.Panel1.Controls.Add(this.BottomStripTable);
             this.MainSplitContainer.Panel1.Controls.Add(this.FractalPictureBox);
             this.MainSplitContainer.Panel1MinSize = 500;
             // 
@@ -66,6 +75,93 @@
             this.MainSplitContainer.SplitterDistance = 500;
             this.MainSplitContainer.TabIndex = 0;
             // 
+            // BottomStripTable
+            // 
+            this.BottomStripTable.ColumnCount = 3;
+            this.BottomStripTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.BottomStripTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.BottomStripTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.BottomStripTable.Controls.Add(this.FractalInfoStrip, 0, 0);
+            this.BottomStripTable.Controls.Add(this.ZoomComboBox, 1, 0);
+            this.BottomStripTable.Controls.Add(this.RestoreScaleButton, 2, 0);
+            this.BottomStripTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomStripTable.Location = new System.Drawing.Point(0, 424);
+            this.BottomStripTable.Margin = new System.Windows.Forms.Padding(0);
+            this.BottomStripTable.Name = "BottomStripTable";
+            this.BottomStripTable.RowCount = 1;
+            this.BottomStripTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.BottomStripTable.Size = new System.Drawing.Size(496, 22);
+            this.BottomStripTable.TabIndex = 2;
+            // 
+            // FractalInfoStrip
+            // 
+            this.FractalInfoStrip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FractalInfoStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this.FractalInfoStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FractalName,
+            this.FractalSegAmount});
+            this.FractalInfoStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.FractalInfoStrip.Location = new System.Drawing.Point(0, 0);
+            this.FractalInfoStrip.Name = "FractalInfoStrip";
+            this.FractalInfoStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.FractalInfoStrip.Size = new System.Drawing.Size(376, 22);
+            this.FractalInfoStrip.SizingGrip = false;
+            this.FractalInfoStrip.TabIndex = 1;
+            this.FractalInfoStrip.Text = "FractalInfoStrip";
+            // 
+            // FractalName
+            // 
+            this.FractalName.Margin = new System.Windows.Forms.Padding(0);
+            this.FractalName.Name = "FractalName";
+            this.FractalName.Size = new System.Drawing.Size(0, 22);
+            // 
+            // FractalSegAmount
+            // 
+            this.FractalSegAmount.Margin = new System.Windows.Forms.Padding(0);
+            this.FractalSegAmount.Name = "FractalSegAmount";
+            this.FractalSegAmount.Size = new System.Drawing.Size(0, 22);
+            // 
+            // ZoomComboBox
+            // 
+            this.ZoomComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ZoomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ZoomComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ZoomComboBox.FormattingEnabled = true;
+            this.ZoomComboBox.Items.AddRange(new object[] {
+            "10%",
+            "20%",
+            "50%",
+            "75%",
+            "100%",
+            "125%",
+            "150%",
+            "200%",
+            "300%",
+            "400%",
+            "600%",
+            "800%",
+            "1000%"});
+            this.ZoomComboBox.Location = new System.Drawing.Point(376, 0);
+            this.ZoomComboBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ZoomComboBox.Name = "ZoomComboBox";
+            this.ZoomComboBox.Size = new System.Drawing.Size(60, 21);
+            this.ZoomComboBox.TabIndex = 2;
+            this.ZoomComboBox.SelectedIndexChanged += new System.EventHandler(this.ZoomComboBox_SelectedIndexChanged);
+            // 
+            // RestoreScaleButton
+            // 
+            this.RestoreScaleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RestoreScaleButton.FlatAppearance.BorderSize = 0;
+            this.RestoreScaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RestoreScaleButton.Location = new System.Drawing.Point(436, 0);
+            this.RestoreScaleButton.Margin = new System.Windows.Forms.Padding(0);
+            this.RestoreScaleButton.Name = "RestoreScaleButton";
+            this.RestoreScaleButton.Size = new System.Drawing.Size(60, 22);
+            this.RestoreScaleButton.TabIndex = 3;
+            this.RestoreScaleButton.Text = "Restore";
+            this.RestoreScaleButton.UseVisualStyleBackColor = true;
+            this.RestoreScaleButton.Click += new System.EventHandler(this.RestoreScaleButton_Click);
+            // 
             // FractalPictureBox
             // 
             this.FractalPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,6 +172,10 @@
             this.FractalPictureBox.TabIndex = 0;
             this.FractalPictureBox.TabStop = false;
             this.FractalPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.FractalPictureBox_Paint);
+            this.FractalPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FractalPictureBox_MouseDown);
+            this.FractalPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FractalPictureBox_MouseMove);
+            this.FractalPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FractalPictureBox_MouseUp);
+            this.FractalPictureBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.FractalPictureBox_MouseWheel);
             this.FractalPictureBox.Resize += new System.EventHandler(this.FractalPictureBox_Resize);
             // 
             // ControlsTable
@@ -97,7 +197,7 @@
             this.ControlsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.ControlsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.ControlsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.ControlsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.ControlsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.ControlsTable.Size = new System.Drawing.Size(292, 446);
             this.ControlsTable.TabIndex = 0;
             // 
@@ -108,6 +208,7 @@
             this.FractalChooseBox.FormattingEnabled = true;
             this.FractalChooseBox.Items.AddRange(new object[] {
             "Koch Snowflake",
+            "Koch Anti-Snowflake",
             "Sierpinski Triangle"});
             this.FractalChooseBox.Location = new System.Drawing.Point(84, 10);
             this.FractalChooseBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -133,12 +234,12 @@
             // 
             this.ScaleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ScaleLabel.AutoSize = true;
-            this.ScaleLabel.Location = new System.Drawing.Point(125, 50);
+            this.ScaleLabel.Location = new System.Drawing.Point(121, 50);
             this.ScaleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.ScaleLabel.Name = "ScaleLabel";
-            this.ScaleLabel.Size = new System.Drawing.Size(39, 13);
+            this.ScaleLabel.Size = new System.Drawing.Size(48, 13);
             this.ScaleLabel.TabIndex = 2;
-            this.ScaleLabel.Text = "Depth:";
+            this.ScaleLabel.Text = "Iteration:";
             this.ScaleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FractalGenerator
@@ -156,6 +257,10 @@
             this.MainSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).EndInit();
             this.MainSplitContainer.ResumeLayout(false);
+            this.BottomStripTable.ResumeLayout(false);
+            this.BottomStripTable.PerformLayout();
+            this.FractalInfoStrip.ResumeLayout(false);
+            this.FractalInfoStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FractalPictureBox)).EndInit();
             this.ControlsTable.ResumeLayout(false);
             this.ControlsTable.PerformLayout();
@@ -169,8 +274,14 @@
         private System.Windows.Forms.SplitContainer MainSplitContainer;
         private System.Windows.Forms.TableLayoutPanel ControlsTable;
         private System.Windows.Forms.ComboBox FractalChooseBox;
-        private System.Windows.Forms.TrackBar DepthSlider;
+        private FractalDepthTrackBar DepthSlider;
         private System.Windows.Forms.Label ScaleLabel;
+        private System.Windows.Forms.StatusStrip FractalInfoStrip;
+        private System.Windows.Forms.ToolStripStatusLabel FractalName;
+        private System.Windows.Forms.ToolStripStatusLabel FractalSegAmount;
+        private System.Windows.Forms.TableLayoutPanel BottomStripTable;
+        private System.Windows.Forms.ComboBox ZoomComboBox;
+        private System.Windows.Forms.Button RestoreScaleButton;
     }
 }
 

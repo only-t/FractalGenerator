@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FractalGenerator
+namespace FractalGeneratorProject
 {
     internal static class Program
     {

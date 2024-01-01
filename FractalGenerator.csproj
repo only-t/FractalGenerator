@@ -47,17 +47,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fractal.cs" />
+    <Compile Include="FractalDepthTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FractalGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FractalGenerator.Designer.cs">
       <DependentUpon>FractalGenerator.cs</DependentUpon>
     </Compile>
+    <Compile Include="KochAntiSnowflake.cs" />
     <Compile Include="KochSnowflake.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Segment.cs" />
     <EmbeddedResource Include="FractalGenerator.resx">
       <DependentUpon>FractalGenerator.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -67,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -80,6 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FractalGenerator.Properties
+namespace FractalGeneratorProject.Properties
 {
 
 

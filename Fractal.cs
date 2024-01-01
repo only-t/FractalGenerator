@@ -1,17 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
-namespace FractalGenerator
+namespace FractalGeneratorProject
 {
     internal abstract class Fractal
     {
         public string name;
+        public List<Segment> segments;
 
-        public Fractal(string name)
+        public Fractal(String name)
         {
             this.name = name;
+            segments = new List<Segment>();
         }
 
-        public abstract void DrawFractal(Graphics g, int depth);
+        public abstract void DrawFractalWithDepth(Graphics g, Point c, float scale, PointF offset, int depth);
+        public void ClearSegments()
+        {
+            segments.Clear();
+        }
     }
 }
