@@ -79,17 +79,40 @@ namespace FractalGeneratorProject
 
                 if (comboBox.SelectedItem.ToString() == "Koch Snowflake")
                 {
+                    if(this.DepthSlider.Value > 10)
+                    {
+                        this.DepthSlider.Value = 10;
+                    }
+
+                    this.DepthSlider.Maximum = 10;
                     currentFractal = new KochSnowflake(this);
                 }
                 else if(comboBox.SelectedItem.ToString() == "Koch Anti-Snowflake")
                 {
+                    if (this.DepthSlider.Value > 10)
+                    {
+                        this.DepthSlider.Value = 10;
+                    }
+
+                    this.DepthSlider.Maximum = 10;
                     currentFractal = new KochAntiSnowflake(this);
                 }
                 else if(comboBox.SelectedItem.ToString() == "Sierpinski Triangle")
                 {
+                    if (this.DepthSlider.Value > 10)
+                    {
+                        this.DepthSlider.Value = 10;
+                    }
+
+                    this.DepthSlider.Maximum = 10;
                     this.TriangleFillButton.Visible = true;
                     this.TriangleFillButton.Enabled = true;
+
                     currentFractal = new SierpinskiTriangle(this);
+                } else if(comboBox.SelectedItem.ToString() == "Heighway Dragon Curve")
+                {
+                    this.DepthSlider.Maximum = 15;
+                    currentFractal = new DragonCurve(this);
                 }
             }
 

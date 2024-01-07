@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace FractalGeneratorProject
@@ -33,6 +32,11 @@ namespace FractalGeneratorProject
                 rec.Height = 14;
 
                 g.FillRectangle(new SolidBrush(Color.FromKnownColor(KnownColor.ControlDark)), rec);
+
+                if(Maximum > 10)
+                {
+                    return;
+                }
 
                 float width = e.ClipRectangle.Width - 12;
                 for (int i = 0; i < Maximum - 1; i++)

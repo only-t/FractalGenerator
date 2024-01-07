@@ -213,7 +213,8 @@
             this.FractalChooseBox.Items.AddRange(new object[] {
             "Koch Snowflake",
             "Koch Anti-Snowflake",
-            "Sierpinski Triangle"});
+            "Sierpinski Triangle",
+            "Heighway Dragon Curve"});
             this.FractalChooseBox.Location = new System.Drawing.Point(84, 10);
             this.FractalChooseBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.FractalChooseBox.Name = "FractalChooseBox";
