@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace FractalGeneratorProject
@@ -10,15 +12,27 @@ namespace FractalGeneratorProject
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
-
-            // WM_PAINT
-            if (m.Msg == 0x0F)
+            // WM_MOUSEWHEEL
+            if (m.Msg == 0x020a)
             {
-                using (Graphics lgGraphics = Graphics.FromHwndInternal(m.HWnd))
-                    OnPaintOver(new PaintEventArgs(lgGraphics, this.ClientRectangle));
+                SendMessage(this.Parent.Handle, m.Msg, m.WParam, m.LParam);
+                m.Result = IntPtr.Zero;
+            }
+            else
+            {
+                base.WndProc(ref m);
+
+                // WM_PAINT
+                if (m.Msg == 0x0F)
+                {
+                    using (Graphics lgGraphics = Graphics.FromHwndInternal(m.HWnd))
+                        OnPaintOver(new PaintEventArgs(lgGraphics, this.ClientRectangle));
+                }
             }
         }
 
@@ -27,24 +41,43 @@ namespace FractalGeneratorProject
             Graphics g = e.Graphics;
             if (g != null)
             {
-                Rectangle rec = new Rectangle(e.ClipRectangle.Location, e.ClipRectangle.Size);
-                rec.Y = 27;
-                rec.Height = 14;
+                Rectangle rec = new Rectangle(e.ClipRectangle.Location, e.ClipRectangle.Size)
+                {
+                    Y = 27,
+                    Height = 14
+                };
 
                 g.FillRectangle(new SolidBrush(Color.FromKnownColor(KnownColor.ControlDark)), rec);
 
-                if(Maximum > 10)
+                if(Maximum <= 10)
                 {
-                    return;
-                }
-
-                float width = e.ClipRectangle.Width - 12;
-                for (int i = 0; i < Maximum - 1; i++)
+                    float width = e.ClipRectangle.Width - 12;
+                    for (int i = 1; i <= Maximum; i += 3)
+                    {
+                        if (i < 10)
+                        {
+                            g.DrawString(i.ToString(), SystemFonts.DefaultFont, Brushes.White, (int)((i - 1) * width / Maximum) + 8, 28);
+                        }
+                        else
+                        {
+                            g.DrawString(i.ToString(), SystemFonts.DefaultFont, Brushes.White, (int)((i - 2) * width / (Maximum - 1)) + 6, 28);
+                        }
+                    }
+                } else if(Maximum < 100)
                 {
-                    g.DrawString((i + 1).ToString(), SystemFonts.DefaultFont, Brushes.White, (int)(width/10*i) + 8, 28);
+                    float width = e.ClipRectangle.Width - 14;
+                    for (int i = 1; i <= Maximum; i += 7)
+                    {
+                        if (i < 10)
+                        {
+                            g.DrawString(i.ToString(), SystemFonts.DefaultFont, Brushes.White, (int)((i - 1) * width / Maximum) + 8, 28);
+                        }
+                        else
+                        {
+                            g.DrawString(i.ToString(), SystemFonts.DefaultFont, Brushes.White, (int)((i - 2) * width / (Maximum - 1)) + 2, 28);
+                        }
+                    }
                 }
-
-                g.DrawString("10", SystemFonts.DefaultFont, Brushes.White, (int)(8*width/9) + 6, 28);
             }
         }
     }

@@ -7,14 +7,11 @@ namespace FractalGeneratorProject
 {
     internal class DragonCurve : Fractal
     {
-        private const int BASE_SEG_LEN = 60;
         private List<Segment> segments;
-        private FractalGenerator mainform;
 
-        public DragonCurve(FractalGenerator mainform) : base("Heighway Dragon Curve")
+        public DragonCurve(FractalGenerator mainform) : base("Heighway Dragon Curve", mainform)
         {
             segments = new List<Segment>();
-            this.mainform = mainform;
         }
 
         private PointF RotatePointF(PointF p, PointF c, int angle)
@@ -56,8 +53,8 @@ namespace FractalGeneratorProject
 
             if (segments.Count <= 0)
             {
-                PointF p1 = new PointF(c.X + BASE_SEG_LEN / 2, c.Y);
-                PointF p2 = new PointF(c.X - BASE_SEG_LEN / 2, c.Y);
+                PointF p1 = new PointF(c.X + mainform.segmentSize / 2, c.Y);
+                PointF p2 = new PointF(c.X - mainform.segmentSize / 2, c.Y);
                 new_segments.Add(new Segment(p1, p2));
             }
             else

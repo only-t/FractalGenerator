@@ -7,14 +7,11 @@ namespace FractalGeneratorProject
 {
     internal class SierpinskiTriangle : Fractal
     {
-        private const int BASE_SEG_LEN = 200;
         private List<Triangle> triangles;
-        private FractalGenerator mainform;
 
-        public SierpinskiTriangle(FractalGenerator mainform) : base("Sierpinski Triangle")
+        public SierpinskiTriangle(FractalGenerator mainform) : base("Sierpinski Triangle", mainform)
         {
             triangles = new List<Triangle>();
-            this.mainform = mainform;
         }
 
         private void Draw(Graphics g, PointF c)
@@ -23,7 +20,7 @@ namespace FractalGeneratorProject
             (float, float) offset = mainform.offset;
             foreach (Triangle tri in triangles)
             {
-                if(mainform.TriangleFillButton.Checked)
+                if(mainform.FillButton.Checked)
                 {
                     Segment seg1 = tri.segments[0];
                     Segment seg2 = tri.segments[1];
@@ -72,9 +69,9 @@ namespace FractalGeneratorProject
 
             if (triangles.Count <= 0)
             {
-                float h = (float)(BASE_SEG_LEN * Math.Sqrt(3) / 2);
-                PointF p1 = new PointF(c.X + BASE_SEG_LEN / 2, c.Y + h / 3);
-                PointF p2 = new PointF(c.X - BASE_SEG_LEN / 2, c.Y + h / 3);
+                float h = (float)(mainform.segmentSize * Math.Sqrt(3) / 2);
+                PointF p1 = new PointF(c.X + mainform.segmentSize / 2, c.Y + h / 3);
+                PointF p2 = new PointF(c.X - mainform.segmentSize / 2, c.Y + h / 3);
                 PointF p3 = new PointF(c.X, c.Y - 2 * h / 3);
                 new_triangles.Add(new Triangle(p1, p2, p3));
             }
@@ -107,13 +104,7 @@ namespace FractalGeneratorProject
 
         public override int GetSegmentAmount()
         {
-            int segments = 0;
-            foreach(Triangle tri in triangles)
-            {
-                segments += tri.segments.Length;
-            }
-
-            return segments;
+            return triangles.Count*3;
         }
     }
 }

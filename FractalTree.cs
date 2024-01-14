@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace FractalGeneratorProject
 {
-    internal class KochAntiSnowflake : Fractal
+    internal class FractalTree : Fractal
     {
-        private List<Segment> segments;
+        List<Segment> segments;
 
-        public KochAntiSnowflake(FractalGenerator mainform) : base("Koch Anti-Snowflake", mainform)
+        public FractalTree(FractalGenerator mainform) : base("Fractal Canopy", mainform)
         {
             segments = new List<Segment>();
+            TreeNode tree = new TreeNode();
         }
 
         private PointF RotatePointF(PointF p, PointF c, int angle)
@@ -52,30 +54,39 @@ namespace FractalGeneratorProject
 
             if (segments.Count <= 0)
             {
-                float h = (float)(mainform.segmentSize * Math.Sqrt(3) / 2);
-                PointF p1 = new PointF(c.X + mainform.segmentSize / 2, c.Y + h / 3);
-                PointF p2 = new PointF(c.X - mainform.segmentSize / 2, c.Y + h / 3);
-                PointF p3 = new PointF(c.X, c.Y - 2 * h / 3);
+                PointF p1 = new PointF(c.X, c.Y);
+                PointF p2 = new PointF(c.X, c.Y - mainform.segmentSize);
                 new_segments.Add(new Segment(p1, p2));
-                new_segments.Add(new Segment(p2, p3));
-                new_segments.Add(new Segment(p3, p1));
             }
             else
             {
-                foreach (Segment seg in segments)
+                for(int i = segments.Count/2; i < segments.Count; i++)
                 {
-                    PointF p1 = new PointF(seg.x1 + (seg.x2 - seg.x1) / 3, seg.y1 + (seg.y2 - seg.y1) / 3);
-                    PointF p2 = RotatePointF(new PointF(seg.x1, seg.y1), p1, -120);
-                    PointF p3 = new PointF(seg.x2 + (seg.x1 - seg.x2) / 3, seg.y2 + (seg.y1 - seg.y2) / 3);
+                    Segment seg = segments[i];
+                    float distance_ratio = 1 + mainform.currentTreeRatio;
+                    PointF left_p = new PointF(
+                        seg.x1 * (1 - distance_ratio) + seg.x2 * distance_ratio,
+                        seg.y1 * (1 - distance_ratio) + seg.y2 * distance_ratio
+                    );
 
-                    new_segments.Add(new Segment(seg.x1, seg.y1, p1.X, p1.Y));
-                    new_segments.Add(new Segment(p1.X, p1.Y, p2.X, p2.Y));
-                    new_segments.Add(new Segment(p2.X, p2.Y, p3.X, p3.Y));
-                    new_segments.Add(new Segment(p3.X, p3.Y, seg.x2, seg.y2));
+                    left_p = RotatePointF(left_p, new PointF(seg.x2, seg.y2), mainform.currentTreeAngle);
+
+                    PointF right_p = new PointF(
+                        seg.x1 * (1 - distance_ratio) + seg.x2 * distance_ratio,
+                        seg.y1 * (1 - distance_ratio) + seg.y2 * distance_ratio
+                    );
+
+                    right_p = RotatePointF(right_p, new PointF(seg.x2, seg.y2), -mainform.currentTreeAngle);
+
+                    Segment new_seg1 = new Segment(seg.x2, seg.y2, left_p.X, left_p.Y);
+                    Segment new_seg2 = new Segment(seg.x2, seg.y2, right_p.X, right_p.Y);
+
+                    new_segments.Add(new_seg1);
+                    new_segments.Add(new_seg2);
                 }
             }
 
-            segments = new_segments;
+            segments.AddRange(new_segments);
 
             DrawFractalWithDepth(g, c, depth - 1);
         }

@@ -6,16 +6,9 @@ namespace FractalGeneratorProject
 {
     internal class KochSnowflake : Fractal
     {
-        private const int BASE_SEG_LEN = 200;
-        private List<Segment> segments;
-        private FractalGenerator mainform;
+        private List<Segment> segments = new List<Segment>();
 
-        public KochSnowflake(FractalGenerator mainform) : base("Koch Snowflake")
-        {
-            segments = new List<Segment>();
-            this.mainform = mainform;
-        }
-
+        public KochSnowflake(FractalGenerator mainform) : base("Koch Snowflake", mainform) { }
         private PointF RotatePointF(PointF p, PointF c, int angle)
         {
             float rad = (float)(angle*Math.PI/180);
@@ -55,9 +48,9 @@ namespace FractalGeneratorProject
 
             if(segments.Count <= 0)
             {
-                float h = (float)(BASE_SEG_LEN*Math.Sqrt(3) / 2);
-                PointF p1 = new PointF(c.X + BASE_SEG_LEN/2, c.Y + h/3);
-                PointF p2 = new PointF(c.X - BASE_SEG_LEN/2, c.Y + h/3);
+                float h = (float)(mainform.segmentSize*Math.Sqrt(3) / 2);
+                PointF p1 = new PointF(c.X + mainform.segmentSize / 2, c.Y + h/3);
+                PointF p2 = new PointF(c.X - mainform.segmentSize / 2, c.Y + h/3);
                 PointF p3 = new PointF(c.X, c.Y - 2*h/3);
                 new_segments.Add(new Segment(p1, p2));
                 new_segments.Add(new Segment(p2, p3));
