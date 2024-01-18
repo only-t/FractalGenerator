@@ -265,26 +265,35 @@ namespace FractalGeneratorProject
 
         private void TreeAngleNumeric_ValueChanged(object sender, EventArgs e)
         {
-            currentTreeAngle = (int)TreeAngleNumeric.Value;
+            if(currentTreeAngle != (int)TreeAngleNumeric.Value)
+            {
+                currentTreeAngle = (int)TreeAngleNumeric.Value;
+                TreeAngleTrackBar.Value = (int)TreeAngleNumeric.Value;
+            }
+
             FractalPictureBox.Refresh();
         }
 
         private void TreeRatioNumeric_ValueChanged(object sender, EventArgs e)
         {
-            currentTreeRatio = (float)TreeRatioNumeric.Value;
-            FractalPictureBox.Refresh();
-        }
+            if (currentTreeRatio != (float)TreeRatioNumeric.Value)
+            {
+                currentTreeRatio = (float)TreeRatioNumeric.Value;
+                TreeRatioTrackBar.Value = (int)(TreeRatioNumeric.Value * 20);
+                Console.WriteLine((int)(TreeRatioNumeric.Value * 20));
+            }
 
-        private void TreeRatioTrackBar_Scroll(object sender, EventArgs e)
-        {
-            Console.WriteLine(TreeRatioTrackBar.Value);
-            TreeRatioNumeric.Value = new decimal((float)TreeRatioTrackBar.Value/20);
+            FractalPictureBox.Refresh();
         }
 
         private void TreeAngleTrackBar_Scroll(object sender, EventArgs e)
         {
-            Console.WriteLine(TreeAngleTrackBar.Value);
             TreeAngleNumeric.Value = TreeAngleTrackBar.Value;
+        }
+
+        private void TreeRatioTrackBar_Scroll(object sender, EventArgs e)
+        {
+            TreeRatioNumeric.Value = new decimal((float)TreeRatioTrackBar.Value/20);
         }
 
         private void RestoreScaleButton_Click(object sender, EventArgs e)

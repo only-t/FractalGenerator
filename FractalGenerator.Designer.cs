@@ -44,11 +44,11 @@
             this.FillButton = new System.Windows.Forms.CheckBox();
             this.SegmentSizeNumeric = new System.Windows.Forms.NumericUpDown();
             this.SegmentSizeLabel = new System.Windows.Forms.Label();
-            this.TreeAngleNumeric = new System.Windows.Forms.NumericUpDown();
             this.TreeAngleLabel = new System.Windows.Forms.Label();
             this.TreeRatioLabel = new System.Windows.Forms.Label();
             this.TreeRatioNumeric = new System.Windows.Forms.NumericUpDown();
             this.TreeAngleTrackBar = new System.Windows.Forms.TrackBar();
+            this.TreeAngleNumeric = new System.Windows.Forms.NumericUpDown();
             this.TreeRatioTrackBar = new System.Windows.Forms.TrackBar();
             this.DepthSlider = new FractalGeneratorProject.FractalDepthTrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
@@ -61,9 +61,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.FractalPictureBox)).BeginInit();
             this.ControlsTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentSizeNumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TreeAngleNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeRatioNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeAngleTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeAngleNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeRatioTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DepthSlider)).BeginInit();
             this.SuspendLayout();
@@ -346,28 +346,6 @@
             this.SegmentSizeLabel.Text = "Segment Size:";
             this.SegmentSizeLabel.Visible = false;
             // 
-            // TreeAngleNumeric
-            // 
-            this.TreeAngleNumeric.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TreeAngleNumeric.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.TreeAngleNumeric.InterceptArrowKeys = false;
-            this.TreeAngleNumeric.Location = new System.Drawing.Point(85, 243);
-            this.TreeAngleNumeric.Margin = new System.Windows.Forms.Padding(0);
-            this.TreeAngleNumeric.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.TreeAngleNumeric.Name = "TreeAngleNumeric";
-            this.TreeAngleNumeric.Size = new System.Drawing.Size(120, 20);
-            this.TreeAngleNumeric.TabIndex = 6;
-            this.TreeAngleNumeric.Visible = false;
-            this.TreeAngleNumeric.ValueChanged += new System.EventHandler(this.TreeAngleNumeric_ValueChanged);
-            // 
             // TreeAngleLabel
             // 
             this.TreeAngleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -429,6 +407,28 @@
             this.TreeAngleTrackBar.Visible = false;
             this.TreeAngleTrackBar.Scroll += new System.EventHandler(this.TreeAngleTrackBar_Scroll);
             // 
+            // TreeAngleNumeric
+            // 
+            this.TreeAngleNumeric.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TreeAngleNumeric.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.TreeAngleNumeric.InterceptArrowKeys = false;
+            this.TreeAngleNumeric.Location = new System.Drawing.Point(85, 243);
+            this.TreeAngleNumeric.Margin = new System.Windows.Forms.Padding(0);
+            this.TreeAngleNumeric.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.TreeAngleNumeric.Name = "TreeAngleNumeric";
+            this.TreeAngleNumeric.Size = new System.Drawing.Size(120, 20);
+            this.TreeAngleNumeric.TabIndex = 6;
+            this.TreeAngleNumeric.Visible = false;
+            this.TreeAngleNumeric.ValueChanged += new System.EventHandler(this.TreeAngleNumeric_ValueChanged);
+            // 
             // TreeRatioTrackBar
             // 
             this.TreeRatioTrackBar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -482,9 +482,9 @@
             this.ControlsTable.ResumeLayout(false);
             this.ControlsTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentSizeNumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TreeAngleNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeRatioNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeAngleTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeAngleNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeRatioTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DepthSlider)).EndInit();
             this.ResumeLayout(false);
